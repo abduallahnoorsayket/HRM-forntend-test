@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="long-title">
-      <h3>Tasks for Employees </h3>
+      <h3>Tasks for Employees</h3>
     </div>
     <DxScheduler
       :data-source="dataSource"
@@ -14,7 +14,7 @@
       start-date-expr="start.dateTime"
       end-date-expr="end.dateTime"
       text-expr="summary"
-      time-zone="America/Los_Angeles"
+      time-zone="Asia/Dhaka"
       current-view="workWeek"
     />
   </div>
@@ -36,14 +36,21 @@ export default {
       currentDate: new Date(2022, 6, 1),
       dataSource: new CustomStore({
         load: (options) => this.getData(options, { showDeleted: false }),
+        //
+        // loadMode: "raw",
+        // load: function () {
+        //   return $.getJSON("url/to/the/resource");
+        // },
       }),
+      //       var store = new DevExpress.data.CustomStore({
+
+      // });
     };
   },
   methods: {
     getData(_, requestOptions) {
       const PUBLIC_KEY = "AIzaSyB28zJFAcw4Nm6JpJKiXkUDmFaoCgZ6VzU";
-      const CALENDAR_ID =
-        "abdullahnoorsayket@gmail.com";
+      const CALENDAR_ID = "abdullahnoorsayket@gmail.com";
       const dataUrl = [
         "https://www.googleapis.com/calendar/v3/calendars/",
         CALENDAR_ID,
