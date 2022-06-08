@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="long-title">
-      <h3>Tasks for Employees</h3>
+      <h3>Calendar</h3>
     </div>
     <DxScheduler
       :data-source="dataSource"
@@ -33,7 +33,7 @@ export default {
   data() {
     return {
       views: ["day", "workWeek", "month"],
-      currentDate: new Date(2022, 6, 1),
+      currentDate: new Date(2022, 6, 8),
       dataSource: new CustomStore({
         load: (options) => this.getData(options, { showDeleted: false }),
         //
@@ -60,7 +60,7 @@ export default {
 
       return axios
         .get(dataUrl, requestOptions)
-        .then((response) => response.json())
+        .then((response) => response.data)
         .then((data) => data.items);
     },
   },
