@@ -7,15 +7,15 @@
       :data-source="dataSource"
       :current-date="currentDate"
       :views="views"
-      :height="500"
-      :editing="false"
-      :show-all-day-panel="false"
+      :height="600"
+      :editing="true"
+      :show-all-day-panel="true"
       :start-day-hour="7"
       start-date-expr="start.dateTime"
       end-date-expr="end.dateTime"
       text-expr="summary"
       time-zone="Asia/Dhaka"
-      current-view="workWeek"
+      current-view="month"
     />
   </div>
 </template>
@@ -35,7 +35,7 @@ export default {
       views: ["day", "workWeek", "month"],
       currentDate: new Date(2022, 6, 8),
       dataSource: new CustomStore({
-        load: (options) => this.getData(options, { showDeleted: false }),
+        load: (options) => this.getData(options, { showDeleted: true }),
         //
         // loadMode: "raw",
         // load: function () {
