@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="long-title">
-      <h3>Calendar</h3>
+      <h3>My Calendar</h3>
     </div>
     <DxScheduler
       :data-source="dataSource"
@@ -16,24 +16,32 @@
       text-expr="summary"
       time-zone="Asia/Dhaka"
       current-view="month"
-    />
+    >
+      <DxAppointmentDragging
+        :group="draggingGroupName"
+        :on-remove="onAppointmentRemove"
+        :on-add="onAppointmentAdd"
+      />
+    </DxScheduler>
   </div>
 </template>
 <script>
 // import "whatwg-fetch";
 import axios from "axios";
-import DxScheduler from "devextreme-vue/scheduler";
+import DxScheduler, { DxAppointmentDragging } from "devextreme-vue/scheduler";
 import CustomStore from "devextreme/data/custom_store";
 
 export default {
   name: "googleCal",
   components: {
     DxScheduler,
+    DxAppointmentDragging,
   },
   data() {
     return {
+      draggingGroupName: "appointmentsGroup",
       views: ["day", "workWeek", "month"],
-      currentDate: new Date(2022, 6, 8),
+      currentDate: new Date(),
       dataSource: new CustomStore({
         load: (options) => this.getData(options, { showDeleted: true }),
         //
